@@ -3,7 +3,16 @@
 A console-based **C++ bank management system** for managing client records and performing basic banking transactions.
 The application stores client data in a text file, allowing data to persist between program runs.
 
-## Features
+## Screenshots
+
+### Main Menu
+![Main Menu](screenshots/main-menu.png)
+
+### Client List
+![Client List](screenshots/client-list.png)
+
+### Transactions
+![Transactions](screenshots/transactions.png)
 
 ### Client Management
 
