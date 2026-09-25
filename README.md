@@ -61,7 +61,7 @@ permissions = 3
 
 ### Login Screen
 
-![Login Screen](screenshots/login.png)
+![Login Screen](screenshots/LoginScreen.png)
 
 ### Main Menu
 
