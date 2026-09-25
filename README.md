@@ -1,79 +1,191 @@
-# Bank Clients Management System
+# Bank Management System (C++)
 
-A console-based **C++ bank management system** for managing client records and performing basic banking transactions.
-The application stores client data in a text file, allowing data to persist between program runs.
+A console-based Bank Management System written in C++. The project provides client account management, banking transactions, user authentication, and a permission-based user management system.
+
+# Features
+
+# 🔐 Authentication
+
+* Username/password login system
+* Login loop until valid credentials are entered
+* Logout and return to the login screen
+
+# 👤 Client Management
+
+* List all clients
+* Add a new client
+* Delete a client
+* Update client information
+* Find a client by account number
+
+# 💰 Transactions
+
+* Deposit funds
+* Withdraw funds
+* Prevent withdrawals that exceed the available balance
+* View total balances across all clients
+
+#  👥 User Management
+
+* List all users
+* Add a new user
+* Delete a user
+* Update user information
+* Find a user by username
+* Assign permissions to each user
+
+# 🔑 Permission System
+
+The system uses a **bitmask-based permission system** to control access to different features.
+
+Each permission is represented by a bit flag:
+
+| Permission       | Value |
+| ---------------- | ----: |
+| Show Client List |     1 |
+| Add New Client   |     2 |
+| Delete Client    |     4 |
+| Update Client    |     8 |
+| Find Client      |    16 |
+| Transactions     |    32 |
+| Manage Users     |    64 |
+| Full Access      |    -1 |
+
+Users can have multiple permissions at the same time by combining the corresponding values.
+
+For example:
+
+```text
+permissions = 3
+```
+
+means the user has:
+
+* Show Client List (`1`)
+* Add New Client (`2`)
+
+A permission value of `-1` gives the user full access.
+
+---
+
+
+
+### User (`stuserinfo`)
+
+| Field         | Type   | Description        |
+| ------------- | ------ | ------------------ |
+| `username`    | string | Login username     |
+| `password`    | string | Login password     |
+| `permissions` | int    | Permission bitmask |
+
+---
+
+## Program Flow
+
+1. The program loads client and user data from the text files.
+2. The user is asked to log in.
+3. After successful authentication, the Main Menu is displayed.
+4. The selected operation is checked against the user's permissions.
+5. If the user has the required permission, the operation is executed.
+6. The user can log out and return to the Login Screen.
+
+### Main Menu
+
+```text
+1. Show Client List
+2. Add New Client
+3. Delete Client
+4. Update Client Info
+5. Find Client
+6. Transactions
+7. Manage Users
+8. Logout
+```
+---
 
 ## Screenshots
 
+### Login Screen
+
+![Login Screen](screenshots/login.png)
+
 ### Main Menu
+
 ![Main Menu](screenshots/main-menu.png)
-
-### Client List
-![Client List](screenshots/client-list.png)
-
-### Transactions
-![Transactions](screenshots/transactions.png)
 
 ### Client Management
 
-* **Show Client List** — Displays all clients in a formatted table.
-* **Add New Client** — Adds a new client and checks that the account number is unique.
-* **Delete Client** — Displays the client's information and asks for confirmation before deletion.
-* **Update Client Info** — Updates the PIN code, name, phone number, and account balance.
-* **Find Client** — Searches for a client using the account number.
+![Client Management](screenshots/client-management.png)
 
 ### Transactions
 
-* **Deposit** — Adds money to a client's account balance.
-* **Withdraw** — Withdraws money after checking that the requested amount does not exceed the available balance.
-* **Total Balances** — Displays all clients and calculates the total balance of all accounts.
+![Transactions](screenshots/transactions.png)
 
-## Technologies Used
+### User Management
 
-* **C++**
-* File Handling (`fstream`)
-* `struct`
-* `vector`
-* Iterators
-* String Manipulation
-* Functions
-* Basic Input/Output
-* Console-based User Interface
+![User Management](screenshots/user-management.png)
 
-## Code Structure
+### Permission System
 
-| Function                      | Purpose                                      |
-| ----------------------------- | -------------------------------------------- |
-| `SplitString`                 | Splits a string into parts using a delimiter |
-| `ConvertLineToRecord`         | Converts a file line into a client record    |
-| `LoadClientsDataFromFile`     | Loads client data from the text file         |
-| `SaveClientsDataToFile`       | Saves client data to the text file           |
-| `ShowMainMenu`                | Displays the main menu                       |
-| `ShowAllClients`              | Displays all clients in a formatted table    |
-| `AddNewClient`                | Adds a new client                            |
-| `DeleteClient`                | Deletes a client after confirmation          |
-| `UpdateClientByAccountNumber` | Updates a client's information               |
-| `FindClient`                  | Searches for a client by account number      |
-| `Deposit`                     | Deposits money into an account               |
-| `Withdraw`                    | Withdraws money from an account              |
-| `TotalBalances`               | Calculates and displays total balances       |
-| `Transactions`                | Displays and handles the transactions menu   |
-| `StartBankSystem`             | Controls the main program loop               |
+![Permission System](screenshots/permissions.png)
 
 
-## Future Improvements
+## Requirements
 
-Some possible improvements for future versions:
+* C++ compiler supporting C++11 or later
+* Windows operating system
 
-* Add PIN verification before sensitive operations.
-* Add stronger input validation.
-* Prevent invalid or negative transaction amounts.
-* Replace `system("pause>0")` with a more portable solution.
-* Improve error handling for file operations.
-* Refactor the client structure into a class using OOP principles.
-* Add transaction history.
-* Add authentication and different user roles.
+The project uses Windows-specific commands such as:
 
-## Project Status
+```cpp
+system("cls");
+system("pause>0");
+```
 
-This project was built as a **C++ practice project** to apply programming fundamentals, file handling, vectors, iterators, functions, and problem-solving concepts in a complete console application.
+## Running
+
+Run the compiled program.
+
+On the first run, a user must exist in `Users.text`.
+
+Example administrator account:
+
+```text
+Username: admin
+Password: 1234
+Permissions: -1
+```
+
+---
+
+## Known Limitations
+
+* Passwords are stored in plain text and are not hashed.
+* File parsing assumes that stored records follow the expected format.
+* The application currently uses Windows-specific commands.
+* There is no automatic first-user setup; the first user must exist in `Users.text`.
+* Usernames should be unique.
+* `Users.text` and client data files contain application data and should not be committed to a public repository.
+
+---
+
+## Project Structure
+
+```text
+Bank-Management-System/
+│
+├── ConsoleApplication2.cpp.cpp
+├── README.md
+├── .gitignore
+├── myfile.text
+├── Users.text
+└── screenshots/
+    ├── login.png
+    ├── main-menu.png
+    ├── client-management.png
+    ├── transactions.png
+    ├── user-management.png
+    └── permissions.png
+```
+
+---
