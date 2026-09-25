@@ -2,15 +2,13 @@
 
 A console-based Bank Management System written in C++. The project provides client account management, banking transactions, user authentication, and a permission-based user management system.
 
-# Features
-
-# 🔐 Authentication
+# Authentication
 
 * Username/password login system
 * Login loop until valid credentials are entered
 * Logout and return to the login screen
 
-# 👤 Client Management
+# Client Management
 
 * List all clients
 * Add a new client
@@ -18,14 +16,14 @@ A console-based Bank Management System written in C++. The project provides clie
 * Update client information
 * Find a client by account number
 
-# 💰 Transactions
+# Transactions
 
 * Deposit funds
 * Withdraw funds
 * Prevent withdrawals that exceed the available balance
 * View total balances across all clients
 
-#  👥 User Management
+#  User Management
 
 * List all users
 * Add a new user
@@ -34,7 +32,7 @@ A console-based Bank Management System written in C++. The project provides clie
 * Find a user by username
 * Assign permissions to each user
 
-# 🔑 Permission System
+# Permission System
 
 The system uses a **bitmask-based permission system** to control access to different features.
 
@@ -59,15 +57,28 @@ For example:
 permissions = 3
 ```
 
-means the user has:
+## Screenshots
 
-* Show Client List (`1`)
-* Add New Client (`2`)
+### Login Screen
 
-A permission value of `-1` gives the user full access.
+![Login Screen](screenshots/login.png)
 
----
+### Main Menu
 
+![Main Menu](screenshots/main-menu.png)
+
+
+### Transactions
+
+![Transactions](screenshots/transactions.png)
+
+### User Management
+
+![User Management](screenshots/user-management.png)
+
+### Permission System
+
+![Permission System](screenshots/permissions.png)
 
 
 ### User (`stuserinfo`)
@@ -101,34 +112,6 @@ A permission value of `-1` gives the user full access.
 7. Manage Users
 8. Logout
 ```
----
-
-## Screenshots
-
-### Login Screen
-
-![Login Screen](screenshots/login.png)
-
-### Main Menu
-
-![Main Menu](screenshots/main-menu.png)
-
-### Client Management
-
-![Client Management](screenshots/client-management.png)
-
-### Transactions
-
-![Transactions](screenshots/transactions.png)
-
-### User Management
-
-![User Management](screenshots/user-management.png)
-
-### Permission System
-
-![Permission System](screenshots/permissions.png)
-
 
 ## Requirements
 
@@ -141,22 +124,6 @@ The project uses Windows-specific commands such as:
 system("cls");
 system("pause>0");
 ```
-
-## Running
-
-Run the compiled program.
-
-On the first run, a user must exist in `Users.text`.
-
-Example administrator account:
-
-```text
-Username: admin
-Password: 1234
-Permissions: -1
-```
-
----
 
 ## Known Limitations
 
@@ -186,6 +153,3 @@ Bank-Management-System/
     ├── transactions.png
     ├── user-management.png
     └── permissions.png
-```
-
----
